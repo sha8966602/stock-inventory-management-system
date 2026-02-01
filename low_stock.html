@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Low Stock Alerts</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-danger">
+    <div class="container-fluid">
+        <span class="navbar-brand">⚠ Low Stock Alerts</span>
+        <a href="/dashboard" class="btn btn-light btn-sm">Back</a>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-body">
+            <h4 class="mb-3">Products Running Low</h4>
+
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Available Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in products %}
+                    <tr class="table-warning">
+                        <td>{{ loop.index }}</td>
+                        <td>{{ p[1] }}</td>
+                        <td>{{ p[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% if products|length == 0 %}
+            <div class="alert alert-success text-center">
+                🎉 All products are sufficiently stocked!
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
